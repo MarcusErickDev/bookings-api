@@ -8,3 +8,4 @@ com/gft/restaurant/persistence/BookingJpaController.class
 com/gft/restaurant/persistence/exceptions/IllegalOrphanException.class
 com/gft/restaurant/service/RestaurantGetService.class
 com/gft/restaurant/Restaurant.class
+com/gft/restaurant/service/RestaurantGetByDateService.class

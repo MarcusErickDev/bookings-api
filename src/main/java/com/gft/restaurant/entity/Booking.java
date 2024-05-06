@@ -18,11 +18,9 @@ import javax.swing.JOptionPane;
 //import jakarta.persistence.GenerationType;
 //import jakarta.persistence.Id;
 
-
 //import lombok.AllArgsConstructor;
 //import lombok.Data;
 //import lombok.NoArgsConstructor;
-
 
 //@Table(name="bookings")
 //@Data
@@ -125,10 +123,8 @@ public class Booking implements Serializable {
     public List<Booking> getAllBookings(){
         
         DBConnect connectionDB = new DBConnect();
-        
         String sql="select * from Bookings;";
         
-//        String[] data = new String[5];
         List<Booking> bookings = new ArrayList<Booking>();
         Statement st;
         
@@ -139,11 +135,6 @@ public class Booking implements Serializable {
             ResultSet rs = st.executeQuery(sql);
             
             while(rs.next()){
-//                data[0] = rs.getString(1);
-//                data[1] = rs.getString(2);
-//                data[2] = rs.getString(3);
-//                data[3] = rs.getString(4);
-//                data[4] = rs.getString(5);
                 Booking booking = new Booking();
                 booking.setId(rs.getInt("id"));
                 booking.setCustomer(rs.getString("customer"));
@@ -152,10 +143,9 @@ public class Booking implements Serializable {
                 booking.setTimeSlot(rs.getString("timeSlot"));
                 bookings.add(booking);
             }
-            
-                                      
+                                                  
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(null, "Not Found" + e.toString() );
         }
         
         return bookings;
@@ -164,11 +154,10 @@ public class Booking implements Serializable {
     public Booking findByDate(String queryParam){
         String query = "select id,customer,date,time,timeSlot from Bookings where Bookings.date=(?);";
         DBConnect connectionDB = new DBConnect();
-//        Statement st;
+
         Booking bookingByDate = new Booking();
         try {
             
-//            st = connectionDB.connectionDB().createStatement();
             CallableStatement cs = connectionDB.connectionDB().prepareCall(query);
             cs.setString(1,queryParam);
             cs.execute();
@@ -184,10 +173,9 @@ public class Booking implements Serializable {
                 bookingByDate = booking;
                 return bookingByDate;
             }
-            
-                
+                            
         } catch (Exception e){
-            
+            JOptionPane.showMessageDialog(null, "not found" + e.toString() );
         }
         
         return bookingByDate;
