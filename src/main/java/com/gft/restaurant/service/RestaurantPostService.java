@@ -6,7 +6,6 @@ import io.muserver.MuRequest;
 import io.muserver.MuResponse;
 import io.muserver.RouteHandler;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 public class RestaurantPostService implements RouteHandler {
@@ -28,12 +27,8 @@ public class RestaurantPostService implements RouteHandler {
         newBooking.setTimeSlot(timeSlot);
         
         response.contentType("text/html;charset=utf-8");
-                response.sendChunk("Will send some chunks...<br>");
-                for (int i = 0; i < 10; i++) {
-                    response.sendChunk("Chunk " + i + "<br>");
-                    Thread.sleep(500);
-                }
-                response.sendChunk("<br>Response complete.<br>");
+                
+        response.sendChunk("<br>Response complete.<br>");
         response.sendChunk(new Gson().toJson(newBooking));
                 
     }
